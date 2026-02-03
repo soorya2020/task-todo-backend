@@ -1,41 +1,26 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+import express from "express";
+import cookieParser from "cookie-parser";
+import { PORT } from "./config/env.js";
+// import userRouter from "./routes/user.routes.js";
+import authRouter from "./routes/auth.routes.js";
+import connectToDatabase from "./database/mongodb.js";
+import errorMiddleware from "./middleware/error.middleware.js";
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+import swaggerUi from "swagger-ui-express";
+import swaggerSpec from "./config/swagger.js";
 
-var app = express();
-
-// view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
-
-app.use(logger('dev'));
+const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
-// catch 404 and forward to error handler
-app.use(function(req, res, next) {
-  next(createError(404));
+app.use("/api/auth", authRouter);
+
+app.use(errorMiddleware);
+
+app.listen(PORT, async () => {
+  await connectToDatabase();
+  console.log(`server running on http://localhost:${PORT}`);
 });
-
-// error handler
-app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
-
-  // render the error page
-  res.status(err.status || 500);
-  res.render('error');
-});
-
-module.exports = app;
