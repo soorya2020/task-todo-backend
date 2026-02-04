@@ -11,8 +11,8 @@ const swaggerOptions = {
     },
     servers: [
       {
-        url: "api.gittogether.co.in/",
-        description: "Development server",
+        url: "https://api.gittogether.co.in", 
+        description: "Production server",
       },
     ],
     components: {
