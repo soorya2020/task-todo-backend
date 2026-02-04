@@ -15,7 +15,7 @@ const app = express();
 
 app.use(
   cors({
-    origin: "http://localhost:5173", // Replace with your frontend URL
+    origin: ["http://localhost:5173", "http://todo.gittogether.co.in"], // Replace with your frontend URL
     credentials: true, // Required for cookies/sessions
     methods: ["GET", "POST", "PUT", "DELETE"],
     allowedHeaders: ["Content-Type", "Authorization"],
@@ -27,8 +27,8 @@ app.use(cookieParser());
 
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
-app.use("/api/auth", authRouter);
-app.use("/api/todos", collectionRouter);
+app.use("/auth", authRouter);
+app.use("/todos", collectionRouter);
 
 app.use(errorMiddleware);
 
