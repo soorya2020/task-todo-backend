@@ -1,6 +1,6 @@
 /**
  * @swagger
- * /api/todos/collections:
+ * /todos/collections:
  *   get:
  *     summary: Get all collections of logged-in user
  *     tags: [Collections]
@@ -15,7 +15,7 @@
 
 /**
  * @swagger
- * /api/todos/collections:
+ * /todos/collections:
  *   post:
  *     summary: Create a new collection
  *     tags: [Collections]
@@ -52,7 +52,7 @@
 
 /**
  * @swagger
- * /api/todos/collections/{id}:
+ * /todos/collections/{id}:
  *   put:
  *     summary: Update todos in a collection
  *     tags: [Collections]

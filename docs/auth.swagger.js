@@ -7,7 +7,7 @@
 
 /**
  * @swagger
- * /api/auth/sign-up:
+ * /auth/sign-up:
  *   post:
  *     summary: Register a new user
  *     tags: [Auth]
@@ -38,7 +38,7 @@
 
 /**
  * @swagger
- * /api/auth/sign-in:
+ * /auth/sign-in:
  *   post:
  *     summary: Login user
  *     tags: [Auth]
@@ -65,7 +65,7 @@
 
 /**
  * @swagger
- * /api/auth/sign-out:
+ * /auth/sign-out:
  *   post:
  *     summary: Logout user
  *     tags: [Auth]
