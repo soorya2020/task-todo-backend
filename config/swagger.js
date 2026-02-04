@@ -4,16 +4,30 @@ const swaggerOptions = {
   definition: {
     openapi: "3.0.0",
     info: {
-      title: "Auth API",
+      title: "Todo & Auth API",
       version: "1.0.0",
-      description: "Authentication API documentation",
+      description:
+        "Full API documentation for Authentication and Todo Collections",
     },
     servers: [
       {
         url: "http://localhost:4000/",
+        description: "Development server",
       },
     ],
+    components: {
+      securitySchemes: {
+        bearerAuth: {
+          type: "http",
+          scheme: "bearer",
+          bearerFormat: "JWT",
+        },
+      },
+    },
+    // Optional: Apply security globally to all routes
+    // security: [{ bearerAuth: [] }],
   },
+  // Ensure these paths point to where your @swagger comments are located
   apis: ["./routes/*.js", "./docs/*.js"],
 };
 
