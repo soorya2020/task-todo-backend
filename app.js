@@ -15,7 +15,7 @@ const app = express();
 
 app.use(
   cors({
-    origin: ["http://localhost:5173", "http://todo.gittogether.co.in"], // Replace with your frontend URL
+    origin: ["http://localhost:5173", "https://todo.gittogether.co.in"], // Replace with your frontend URL
     credentials: true, // Required for cookies/sessions
     methods: ["GET", "POST", "PUT", "DELETE"],
     allowedHeaders: ["Content-Type", "Authorization"],
